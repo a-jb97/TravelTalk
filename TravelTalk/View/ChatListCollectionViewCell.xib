@@ -58,8 +58,8 @@
             <size key="customSize" width="420" height="140"/>
             <connections>
                 <outlet property="chatPreviewLabel" destination="ER4-IM-s1o" id="vae-tv-vjh"/>
+                <outlet property="chatRoomNameLabel" destination="jWe-lB-4n7" id="tpJ-e7-06J"/>
                 <outlet property="dateLabel" destination="Lfa-wZ-eKe" id="W2A-DD-ZHo"/>
-                <outlet property="nameLabel" destination="jWe-lB-4n7" id="tpJ-e7-06J"/>
                 <outlet property="profileImage" destination="8ck-D4-Ode" id="T2J-6E-HVm"/>
             </connections>
             <point key="canvasLocation" x="421.37404580152668" y="51.408450704225352"/>

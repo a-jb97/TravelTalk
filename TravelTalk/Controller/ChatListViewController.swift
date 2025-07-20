@@ -36,7 +36,7 @@ class ChatListViewController: UIViewController, UICollectionViewDelegate, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! ChatListCollectionViewCell
         
         cell.profileImage.image = UIImage(named: chatList[indexPath.row].chatroomImage)
-        cell.nameLabel.text = chatList[indexPath.row].chatList.last?.user.name
+        cell.chatRoomNameLabel.text = chatList[indexPath.row].chatroomName
         cell.chatPreviewLabel.text = chatList[indexPath.row].chatList.last?.message
         cell.dateLabel.text = dateForamt.convertDateFormat(stringDate: chatList[indexPath.row].chatList.last?.date ?? "날짜 없음")
         

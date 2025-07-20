@@ -10,7 +10,7 @@ import UIKit
 class ChatListCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var profileImage: UIImageView!
-    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var chatRoomNameLabel: UILabel!
     @IBOutlet var chatPreviewLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     
@@ -25,7 +25,7 @@ class ChatListCollectionViewCell: UICollectionViewCell {
         profileImage.layer.cornerRadius = profileImage.frame.width / 2
         profileImage.contentMode = .scaleAspectFill
         
-        nameLabel.font = .boldSystemFont(ofSize: 17)
+        chatRoomNameLabel.font = .boldSystemFont(ofSize: 17)
         
         chatPreviewLabel.textColor = .darkGray
         
