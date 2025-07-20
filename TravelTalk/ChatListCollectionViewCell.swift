@@ -23,6 +23,7 @@ class ChatListCollectionViewCell: UICollectionViewCell {
     func configureUI() {
         profileImage.clipsToBounds = true
         profileImage.layer.cornerRadius = profileImage.frame.width / 2
+        profileImage.contentMode = .scaleAspectFill
         
         nameLabel.font = .boldSystemFont(ofSize: 17)
         

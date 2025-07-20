@@ -7,11 +7,14 @@
 
 import UIKit
 
-class ChatListViewController: UIViewController/*, UICollectionViewDelegate, UICollectionViewDataSource*/ {
+class ChatListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet var chatListCollectionView: UICollectionView!
     
-    let cellIdentifier = "ChatListCollectionViewCell"
+    private var chatList = ChatList.list
+    private let cellIdentifier = "ChatListCollectionViewCell"
+    
+    let dateForamt = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,19 +22,28 @@ class ChatListViewController: UIViewController/*, UICollectionViewDelegate, UICo
         let xib = UINib(nibName: cellIdentifier, bundle: nil)
         
         chatListCollectionView.register(xib, forCellWithReuseIdentifier: cellIdentifier)
-//        chatListCollectionView.delegate = self
-//        chatListCollectionView.dataSource = self
+        chatListCollectionView.delegate = self
+        chatListCollectionView.dataSource = self
         
         configureCellLayout()
     }
     
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        <#code#>
-//    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return chatList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! ChatListCollectionViewCell
+        
+        cell.profileImage.image = UIImage(named: chatList[indexPath.row].chatroomImage)
+        cell.nameLabel.text = chatList[indexPath.row].chatList.last?.user.name
+        cell.chatPreviewLabel.text = chatList[indexPath.row].chatList.last?.message
+        cell.dateLabel.text = dateForamt.convertDateFormat(stringDate: chatList[indexPath.row].chatList.last?.date ?? "날짜 없음")
+        
+        return cell
+    }
+    
+    
     
     func configureCellLayout() {
         let layout = UICollectionViewFlowLayout()
@@ -39,9 +51,13 @@ class ChatListViewController: UIViewController/*, UICollectionViewDelegate, UICo
         let cellWidth = deviceBounds.width
         let cellHeight = deviceBounds.height
         
-        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
-        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        layout.itemSize = CGSize(width: cellWidth, height: cellHeight/7.5)
+        layout.sectionInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
         layout.scrollDirection = .vertical
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        
+        chatListCollectionView.collectionViewLayout = layout
     }
 }
 
