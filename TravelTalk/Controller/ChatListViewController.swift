@@ -43,8 +43,6 @@ class ChatListViewController: UIViewController, UICollectionViewDelegate, UIColl
         return cell
     }
     
-    
-    
     func configureCellLayout() {
         let layout = UICollectionViewFlowLayout()
         let deviceBounds = UIScreen.main.bounds
