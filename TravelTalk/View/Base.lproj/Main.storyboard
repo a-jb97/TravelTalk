@@ -95,6 +95,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hKa-Au-Hec"/>
+                    <connections>
+                        <outlet property="chatTableView" destination="1PG-cy-UGj" id="BIm-Pm-lzq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FdK-RB-uYb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

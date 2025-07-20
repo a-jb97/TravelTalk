@@ -13,15 +13,13 @@ class ChatListViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     private var chatList = ChatList.list
     private let cellIdentifier = "ChatListCollectionViewCell"
-    
-    let dateForamt = DateFormatter()
+    private let dateForamt = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let xib = UINib(nibName: cellIdentifier, bundle: nil)
+        configureNib(identifier: cellIdentifier, object: chatListCollectionView)
         
-        chatListCollectionView.register(xib, forCellWithReuseIdentifier: cellIdentifier)
         chatListCollectionView.delegate = self
         chatListCollectionView.dataSource = self
         

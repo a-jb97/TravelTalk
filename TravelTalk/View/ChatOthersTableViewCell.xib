@@ -31,7 +31,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibS-v9-wp0">
-                        <rect key="frame" x="56" y="36" width="41" height="56"/>
+                        <rect key="frame" x="56" y="36.333333333333343" width="41" height="56"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="30Y-ir-zEH"/>
                         </constraints>
@@ -61,8 +61,8 @@
             <connections>
                 <outlet property="dateLabel" destination="Eao-eq-sGA" id="7KB-Nm-2Dg"/>
                 <outlet property="messageLabel" destination="ibS-v9-wp0" id="QPc-6b-U3O"/>
+                <outlet property="otherUserName" destination="1mX-ji-u7e" id="hcZ-6b-ZOq"/>
                 <outlet property="userImage" destination="VOD-E8-PrJ" id="mMH-XG-qwY"/>
-                <outlet property="userName" destination="1mX-ji-u7e" id="hcZ-6b-ZOq"/>
             </connections>
             <point key="canvasLocation" x="151.14503816793894" y="38.732394366197184"/>
         </tableViewCell>
