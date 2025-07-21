@@ -10,9 +10,12 @@ import UIKit
 class ChatOthersTableViewCell: UITableViewCell {
     
     @IBOutlet var userImage: UIImageView!
-    @IBOutlet var userName: UILabel!
+    @IBOutlet var otherUserName: UILabel!
     @IBOutlet var messageLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
+    
+    static let identifier = "ChatOthersTableViewCell"
+    private let dateFormat = DateFormatter()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,14 +25,21 @@ class ChatOthersTableViewCell: UITableViewCell {
     
     func configureUI() {
         userImage.clipsToBounds = true
-        userImage.layer.cornerRadius = userName.frame.width / 2
+        userImage.layer.cornerRadius = otherUserName.frame.width / 2
         userImage.contentMode = .scaleAspectFill
         
         messageLabel.layer.borderWidth = 1
         messageLabel.layer.borderColor = UIColor.gray.cgColor
-        messageLabel.layer.cornerRadius = 10
+        messageLabel.layer.cornerRadius = 15
         
-        dateLabel.font = .systemFont(ofSize: 15)
+        dateLabel.font = .systemFont(ofSize: 13)
         dateLabel.textColor = .gray
+    }
+    
+    func configureData(_ item: Chat) {
+        userImage.image = UIImage(named: item.user.image)
+        otherUserName.text = item.user.name
+        messageLabel.text = item.message
+        dateLabel.text = dateFormat.convertDateFormat_HHmma(stringDate: item.date)
     }
 }

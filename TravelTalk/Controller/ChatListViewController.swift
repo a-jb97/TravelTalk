@@ -12,13 +12,14 @@ class ChatListViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet var chatListCollectionView: UICollectionView!
     
     private var chatList = ChatList.list
-    private let cellIdentifier = "ChatListCollectionViewCell"
+    private let chatListCellIdentifier = "ChatListCollectionViewCell"
+    private let chatViewIdentifier = "ChatViewController"
     private let dateForamt = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureNib(identifier: cellIdentifier, object: chatListCollectionView)
+        configureNib(identifier: chatListCellIdentifier, object: chatListCollectionView)
         
         chatListCollectionView.delegate = self
         chatListCollectionView.dataSource = self
@@ -31,14 +32,23 @@ class ChatListViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! ChatListCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: chatListCellIdentifier, for: indexPath) as! ChatListCollectionViewCell
         
         cell.profileImage.image = UIImage(named: chatList[indexPath.row].chatroomImage)
         cell.chatRoomNameLabel.text = chatList[indexPath.row].chatroomName
         cell.chatPreviewLabel.text = chatList[indexPath.row].chatList.last?.message
-        cell.dateLabel.text = dateForamt.convertDateFormat(stringDate: chatList[indexPath.row].chatList.last?.date ?? "날짜 없음")
+        cell.dateLabel.text = dateForamt.convertDateFormat_yyMMdd(stringDate: chatList[indexPath.row].chatList.last?.date ?? "날짜 없음")
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: chatViewIdentifier) as! ChatViewController
+        
+        viewController.chatData = chatList[indexPath.row]
+        
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func configureCellLayout() {

@@ -12,6 +12,9 @@ class ChatMeTableViewCell: UITableViewCell {
     @IBOutlet var messageLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     
+    static let identifier = "ChatMeTableViewCell"
+    private let dateFormat = DateFormatter()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -22,8 +25,14 @@ class ChatMeTableViewCell: UITableViewCell {
         messageLabel.layer.borderWidth = 1
         messageLabel.layer.borderColor = UIColor.gray.cgColor
         messageLabel.layer.backgroundColor = UIColor.systemGray2.cgColor
+        messageLabel.layer.cornerRadius = 15
         
-        dateLabel.font = .systemFont(ofSize: 15)
+        dateLabel.font = .systemFont(ofSize: 13)
         dateLabel.textColor = .gray
+    }
+    
+    func configureData(_ item: Chat) {
+        messageLabel.text = item.message
+        dateLabel.text = dateFormat.convertDateFormat_HHmma(stringDate: item.date)
     }
 }
