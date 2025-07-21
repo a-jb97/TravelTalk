@@ -11,6 +11,7 @@ class ChatMeTableViewCell: UITableViewCell {
     
     @IBOutlet var messageLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var messageBackgroundView: UITextView!
     
     static let identifier = "ChatMeTableViewCell"
     private let dateFormat = DateFormatter()
@@ -22,15 +23,18 @@ class ChatMeTableViewCell: UITableViewCell {
     }
     
     func configureUI() {
-        messageLabel.layer.borderWidth = 1
-        messageLabel.layer.borderColor = UIColor.gray.cgColor
-        messageLabel.layer.backgroundColor = UIColor.systemGray2.cgColor
-        messageLabel.layer.cornerRadius = 15
+        
         messageLabel.numberOfLines = 0
         
         dateLabel.font = .systemFont(ofSize: 13)
         dateLabel.textColor = .gray
         dateLabel.numberOfLines = 0
+        
+        messageBackgroundView.clipsToBounds = true
+        messageBackgroundView.layer.borderWidth = 1
+        messageBackgroundView.layer.borderColor = UIColor.gray.cgColor
+        messageBackgroundView.layer.backgroundColor = UIColor.systemGray2.cgColor
+        messageBackgroundView.layer.cornerRadius = 10
     }
     
     func configureData(_ item: Chat) {
