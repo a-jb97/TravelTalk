@@ -16,7 +16,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private let dateFormat = DateFormatter()
     
     var chatData = ChatRoom(chatroomId: 0, chatroomImage: "", chatroomName: "")
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,6 +28,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         chatTableView.delegate = self
         chatTableView.dataSource = self
+        
+        chatTableView.rowHeight = UITableView.automaticDimension
+        chatTableView.estimatedRowHeight = UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -35,7 +38,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if chatData.chatList[indexPath.row].user.name == "김새싹" {
+        if chatData.chatList[indexPath.row].user.image == "Me" {
             let meCell = tableView.dequeueReusableCell(withIdentifier: ChatMeTableViewCell.identifier, for: indexPath) as! ChatMeTableViewCell
             meCell.configureData(chatData.chatList[indexPath.row])
             
@@ -43,12 +46,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             let othersCell = tableView.dequeueReusableCell(withIdentifier: ChatOthersTableViewCell.identifier, for: indexPath) as! ChatOthersTableViewCell
             othersCell.configureData(chatData.chatList[indexPath.row])
-        
+            
             return othersCell
         }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
     }
 }

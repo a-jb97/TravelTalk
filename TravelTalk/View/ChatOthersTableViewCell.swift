@@ -31,9 +31,11 @@ class ChatOthersTableViewCell: UITableViewCell {
         messageLabel.layer.borderWidth = 1
         messageLabel.layer.borderColor = UIColor.gray.cgColor
         messageLabel.layer.cornerRadius = 15
+        messageLabel.numberOfLines = 0
         
         dateLabel.font = .systemFont(ofSize: 13)
         dateLabel.textColor = .gray
+        dateLabel.numberOfLines = 0
     }
     
     func configureData(_ item: Chat) {
