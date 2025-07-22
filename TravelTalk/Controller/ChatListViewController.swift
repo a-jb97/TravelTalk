@@ -10,6 +10,7 @@ import UIKit
 class ChatListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet var chatListCollectionView: UICollectionView!
+    @IBOutlet var searchBar: UISearchBar!
     
     private var chatList = ChatList.list
     private let chatListCellIdentifier = "ChatListCollectionViewCell"
@@ -18,6 +19,8 @@ class ChatListViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchBar.searchBarStyle = .minimal
         
         configureNib(identifier: chatListCellIdentifier, object: chatListCollectionView)
         
@@ -65,5 +68,7 @@ class ChatListViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         chatListCollectionView.collectionViewLayout = layout
     }
+    
+    
 }
 

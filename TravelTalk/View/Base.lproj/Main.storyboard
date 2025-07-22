@@ -53,19 +53,31 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <searchBar contentMode="redraw" placeholder="친구 이름을 검색해보세요" translatesAutoresizingMaskIntoConstraints="NO" id="vVA-KL-XIm">
+                                <rect key="frame" x="16" y="162" width="361" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="gEA-ml-ahf" id="TbU-ri-8gM"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HXr-nZ-uqA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="hRC-CT-zmS" firstAttribute="top" secondItem="vVA-KL-XIm" secondAttribute="bottom" constant="8" id="8Ev-uP-WrE"/>
+                            <constraint firstItem="vVA-KL-XIm" firstAttribute="leading" secondItem="HXr-nZ-uqA" secondAttribute="leading" constant="16" id="Adx-Nw-ZD8"/>
+                            <constraint firstItem="HXr-nZ-uqA" firstAttribute="trailing" secondItem="vVA-KL-XIm" secondAttribute="trailing" constant="16" id="Guk-ml-dnt"/>
                             <constraint firstItem="hRC-CT-zmS" firstAttribute="top" secondItem="HXr-nZ-uqA" secondAttribute="top" constant="52" id="IcL-Ah-k26"/>
                             <constraint firstItem="hRC-CT-zmS" firstAttribute="bottom" secondItem="HXr-nZ-uqA" secondAttribute="bottom" id="Xxs-jS-pwW"/>
                             <constraint firstItem="HXr-nZ-uqA" firstAttribute="trailing" secondItem="hRC-CT-zmS" secondAttribute="trailing" constant="16" id="b27-Qn-1db"/>
                             <constraint firstItem="hRC-CT-zmS" firstAttribute="leading" secondItem="HXr-nZ-uqA" secondAttribute="leading" constant="16" id="hE9-kh-TuL"/>
+                            <constraint firstItem="vVA-KL-XIm" firstAttribute="top" secondItem="HXr-nZ-uqA" secondAttribute="top" id="p4r-m4-ctX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="TRAVEL TALK" id="y3B-er-1SG"/>
                     <connections>
                         <outlet property="chatListCollectionView" destination="hRC-CT-zmS" id="Mu9-bx-fxP"/>
+                        <outlet property="searchBar" destination="vVA-KL-XIm" id="dF2-d4-Apz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qs6-Ir-un5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -81,32 +93,66 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="1PG-cy-UGj">
-                                <rect key="frame" x="16" y="118" width="361" height="666"/>
+                                <rect key="frame" x="16" y="118" width="361" height="545"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dkp-oT-kWG">
+                                <rect key="frame" x="16" y="679" width="361" height="52"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="a2g-rB-B3Z"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w6r-X4-Q2Z">
+                                <rect key="frame" x="326.33333333333331" y="688" width="50.666666666666686" height="34.333333333333371"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="paperplane" catalog="system">
+                                    <color key="baseForegroundColor" systemColor="systemGrayColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="sendButtonTapped:" destination="Lf8-pH-QIR" eventType="touchUpInside" id="37V-wO-loV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="B5F-lC-Pq0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="1PG-cy-UGj" firstAttribute="leading" secondItem="B5F-lC-Pq0" secondAttribute="leading" constant="16" id="0n5-Q4-MMI"/>
+                            <constraint firstItem="dkp-oT-kWG" firstAttribute="leading" secondItem="B5F-lC-Pq0" secondAttribute="leading" constant="16" id="1lg-xK-qFD"/>
                             <constraint firstItem="1PG-cy-UGj" firstAttribute="top" secondItem="B5F-lC-Pq0" secondAttribute="top" id="RmI-6M-d0x"/>
-                            <constraint firstItem="1PG-cy-UGj" firstAttribute="bottom" secondItem="B5F-lC-Pq0" secondAttribute="bottom" id="XQq-v1-74J"/>
+                            <constraint firstItem="B5F-lC-Pq0" firstAttribute="bottom" secondItem="dkp-oT-kWG" secondAttribute="bottom" constant="53" id="VIK-bx-AcO"/>
+                            <constraint firstItem="w6r-X4-Q2Z" firstAttribute="centerY" secondItem="dkp-oT-kWG" secondAttribute="centerY" id="aLU-sd-4Dp"/>
+                            <constraint firstItem="dkp-oT-kWG" firstAttribute="top" secondItem="1PG-cy-UGj" secondAttribute="bottom" constant="16" id="fdH-eb-8Iv"/>
+                            <constraint firstItem="B5F-lC-Pq0" firstAttribute="trailing" secondItem="dkp-oT-kWG" secondAttribute="trailing" constant="16" id="gWb-fm-2AT"/>
+                            <constraint firstItem="B5F-lC-Pq0" firstAttribute="trailing" secondItem="w6r-X4-Q2Z" secondAttribute="trailing" constant="16" id="wL2-r3-g7M"/>
                             <constraint firstItem="B5F-lC-Pq0" firstAttribute="trailing" secondItem="1PG-cy-UGj" secondAttribute="trailing" constant="16" id="xfy-Xj-lrU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hKa-Au-Hec"/>
                     <connections>
                         <outlet property="chatTableView" destination="1PG-cy-UGj" id="BIm-Pm-lzq"/>
+                        <outlet property="inputMessageTextView" destination="dkp-oT-kWG" id="EKU-GQ-Las"/>
+                        <outlet property="sendButton" destination="w6r-X4-Q2Z" id="gOM-WA-ky3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FdK-RB-uYb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1355" y="6"/>
+            <point key="canvasLocation" x="1354.9618320610687" y="5.6338028169014089"/>
         </scene>
     </scenes>
     <resources>
+        <image name="paperplane" catalog="system" width="128" height="119"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

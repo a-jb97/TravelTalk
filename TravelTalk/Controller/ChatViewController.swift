@@ -10,6 +10,8 @@ import UIKit
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var chatTableView: UITableView!
+    @IBOutlet var inputMessageTextView: UITextView!
+    @IBOutlet var sendButton: UIButton!
     
     static let identifier = "ChatViewController"
     private var chatList = ChatList.list
@@ -19,6 +21,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        inputMessageTextView.text = "메세지를 입력하세요"
+        inputMessageTextView.textColor = .gray
+        inputMessageTextView.textContainerInset = UIEdgeInsets(top: 16, left: 8, bottom: 16, right: 8)
+        
+        inputMessageTextView.delegate = self
+        
+        configureUiInputMessageTextView()
         
         let meXib = UINib(nibName: ChatMeTableViewCell.identifier, bundle: nil)
         chatTableView.register(meXib, forCellReuseIdentifier: ChatMeTableViewCell.identifier)
@@ -31,6 +41,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         chatTableView.rowHeight = UITableView.automaticDimension
         chatTableView.estimatedRowHeight = UITableView.automaticDimension
+    }
+    
+    @IBAction func sendButtonTapped(_ sender: UIButton) {
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,6 +62,28 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             othersCell.configureData(chatData.chatList[indexPath.row])
             
             return othersCell
+        }
+    }
+    
+    func configureUiInputMessageTextView() {
+        inputMessageTextView.clipsToBounds = true
+        inputMessageTextView.layer.backgroundColor = UIColor.systemGray6.cgColor
+        inputMessageTextView.layer.cornerRadius = 10
+    }
+}
+
+extension ChatViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if inputMessageTextView.textColor == UIColor.gray {
+            inputMessageTextView.text = nil
+            inputMessageTextView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if inputMessageTextView.text.isEmpty {
+            inputMessageTextView.text = "메세지를 입력하세요"
+            inputMessageTextView.textColor = UIColor.gray
         }
     }
 }
