@@ -39,6 +39,6 @@ class ChatMeTableViewCell: UITableViewCell {
     
     func configureData(_ item: Chat) {
         messageLabel.text = item.message
-        dateLabel.text = dateFormat.convertDateFormat_HHmma(stringDate: item.date)
+        dateLabel.text = dateFormat.convertDateFormat(stringDate: item.date, wantDateFormat: DateFormat.hma)
     }
 }

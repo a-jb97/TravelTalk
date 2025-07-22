@@ -40,7 +40,7 @@ class ChatListViewController: UIViewController, UICollectionViewDelegate, UIColl
         cell.profileImage.image = UIImage(named: chatList[indexPath.row].chatroomImage)
         cell.chatRoomNameLabel.text = chatList[indexPath.row].chatroomName
         cell.chatPreviewLabel.text = chatList[indexPath.row].chatList.last?.message
-        cell.dateLabel.text = dateForamt.convertDateFormat_yyMMdd(stringDate: chatList[indexPath.row].chatList.last?.date ?? "날짜 없음")
+        cell.dateLabel.text = dateForamt.convertDateFormat(stringDate: chatList[indexPath.row].chatList.last?.date ?? "날짜 없음", wantDateFormat: DateFormat.yMd)
         
         return cell
     }
@@ -54,7 +54,7 @@ class ChatListViewController: UIViewController, UICollectionViewDelegate, UIColl
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func configureCellLayout() {
+    private func configureCellLayout() {
         let layout = UICollectionViewFlowLayout()
         let deviceBounds = UIScreen.main.bounds
         let cellWidth = deviceBounds.width

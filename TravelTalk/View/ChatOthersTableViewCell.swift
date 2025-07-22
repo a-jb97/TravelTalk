@@ -45,6 +45,6 @@ class ChatOthersTableViewCell: UITableViewCell {
         userImage.image = UIImage(named: item.user.image)
         otherUserName.text = item.user.name
         messageLabel.text = item.message
-        dateLabel.text = dateFormat.convertDateFormat_HHmma(stringDate: item.date)
+        dateLabel.text = dateFormat.convertDateFormat(stringDate: item.date, wantDateFormat: DateFormat.hma)
     }
 }
